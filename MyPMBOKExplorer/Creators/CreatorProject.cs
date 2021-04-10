@@ -12,8 +12,8 @@ namespace MyPMBOKExplorer
         {
 
             Project newProject = new Project();
-            //newProject.Name = "Rig PCR AR228";
-            newProject.Name = "Rig PCR AR229";
+            newProject.Name = "Rig PCR AR228";
+            //newProject.Name = "Rig PCR AR229";
             newProject.ProcessGroups.AddRange(CreatorProcessGroups.Create());
             newProject.KnowledgeAreas.AddRange(CreatorKnowledgeAreas.Create());
             
