@@ -154,6 +154,60 @@ namespace MyPMBOKExplorer
             p12.SetTools(new List<string>() { "Analogous estimating", "Parametric estimating", "Bottom-up estimating",
             "Three-point estimating","Alternatives analysis","Reserve analysis","Voting","Meetings","Expert judgment"});
             processes.Add(p12);
+            //**************************************************************
+            Process p13 = new Process(project, "Develop Schedule");
+            p13.SetProcessGroup("Planning");
+            p13.SetKnowledgeArea("Schedule Management");
+            p13.SetInputs(new List<string>() { "Activity list", "Activity attributes", "Activity duration estimates",
+            "Scope baseline","Schedule management plan","Assumption log","Basis of estimates","Lessons learned register",
+            "Milestone list","Project schedule network diagrams","Project team assignments","Resource requirements",
+            "Resource calendars","Risk register","Agreements","Enterprise environmental factors",
+            "Organizational process assets"});
+            p13.SetOutputsCreated(new List<string>() { "Schedule baseline", "Project schedule", "Schedule data", 
+            "Project calendars",
+            "Change requests"});
+            p13.SetOutputsUpdated(new List<string>() { "Schedule management plan", "Cost baseline", "Activity attributes",
+            "Activity duration estimates","Lessons learned register","Resource requirements","Risk register","Assumption log"});
+            p13.SetTools(new List<string>() { "Schedule network analysis", "Critical path method", "Resource optimization",
+            "What-if scenario analysis","Simulation","Leads and lags","Schedule compression","Project management information system",
+            "Agile release planning"});
+            processes.Add(p13);
+            //**************************************************************
+            Process p15 = new Process(project, "Plan Cost Management");
+            p15.SetProcessGroup("Planning");
+            p15.SetKnowledgeArea("Cost Management");
+            p15.SetInputs(new List<string>() { "Project charter", "Schedule management plan", "Risk management plan",
+            "Enterprise environmental factors","Organizational process assets"});
+            p15.SetOutputsCreated(new List<string>() { "Cost management plan" });
+            //p15.SetOutputsUpdated(new List<string>() { "" });
+            p15.SetTools(new List<string>() { "Alternatives analysis", "Meetings", "Expert judgment" });
+            processes.Add(p15);
+            //**************************************************************
+            Process p16 = new Process(project, "Estimate Costs");
+            p16.SetProcessGroup("Planning");
+            p16.SetKnowledgeArea("Cost Management");
+            p16.SetInputs(new List<string>() { "Cost management plan", "Scope baseline", "Quality management plan",
+            "Project schedule","Resource requirements","Risk register","Lessons learned register",
+            "Enterprise environmental factors","Organizational process assets", "Cost estimating policies"});
+            p16.SetOutputsCreated(new List<string>() { "Cost estimates", "Basis of estimates" });
+            p16.SetOutputsUpdated(new List<string>() { "Risk register", "Assumption log", "Lessons learned register" });
+            p16.SetTools(new List<string>() { "Analogous estimating", "Parametric estimating", "Bottom-up estimating",
+            "Three-point estimating","Alternatives analysis","Reserve analysis","Cost of quality",
+            "Project management information system","Voting","Expert judgment"});
+            processes.Add(p16);
+            //**************************************************************
+            Process p17 = new Process(project, "Determine Budget");
+            p17.SetProcessGroup("Planning");
+            p17.SetKnowledgeArea("Cost Management");
+            p17.SetInputs(new List<string>() { "Cost estimates", "Cost management plan", "Resource management plan",
+            "Scope baseline","Basis of estimates", "Project schedule","Risk register","Business case",
+            "Benefits management plan","Agreements", "Enterprise environmental factors","Organizational process assets"});
+            p17.SetOutputsCreated(new List<string>() { "Cost baseline", "Project funding requirements" });
+            p17.SetOutputsUpdated(new List<string>() { "Cost estimates", "Project schedule", "Risk register" });
+            p17.SetTools(new List<string>() { "Cost aggregation", "Reserve analysis", "Historical information review",
+            "Funding limit reconciliation","Financing","Expert judgment"});
+            processes.Add(p17);
+
 
 
 

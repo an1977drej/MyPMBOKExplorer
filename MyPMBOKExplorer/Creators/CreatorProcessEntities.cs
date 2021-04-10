@@ -39,6 +39,7 @@ namespace MyPMBOKExplorer
             list.Add("Configuration management plan", "Project management plan");
             list.Add("Cost baseline", "Project management plan");
             list.Add("Cost estimates", "Project documents");
+            list.Add("Cost estimating policies", "Environmental");
             list.Add("Cost forecasts", "Project documents");
             list.Add("Cost management plan", "Project management plan");
             list.Add("Deliverables", "Deliverables flow");

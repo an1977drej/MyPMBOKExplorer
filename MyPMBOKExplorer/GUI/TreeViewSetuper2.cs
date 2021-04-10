@@ -28,24 +28,7 @@ namespace MyPMBOKExplorer
             SetupColumnsImage();
             m_treeListView2.SelectionChanged += m_treeListView2_SelectionChanged;
         }
-        private void m_treeListView2_SelectionChanged(object sender, EventArgs e)
-        {
-            Object selObj = m_treeListView2.SelectedObject;
-            if (selObj is IProcessEntity entity)
-            {
-                m_frmMain.toolStripStatusLabelPath.Text = entity.FolderPath;
-                m_frmMain.toolStripSplitButtonSettings.Visible = true;
-            }
-            if (selObj is DocFile docFile)
-            {
-                m_frmMain.myDocViewer1.LoadMyDoc(docFile.FilePath);
-            }
-            else
-            {
-                m_frmMain.myDocViewer1.UnloadMyDoc();
-                m_frmMain.ClearStatusStrip2();
-            }
-        }
+        
         public void CreateColumns()
         {
             m_olvColumnName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -192,6 +175,25 @@ namespace MyPMBOKExplorer
             m_treeListView2.CollapseAll();
         }
 
-
+        private void m_treeListView2_SelectionChanged(object sender, EventArgs e)
+        {
+            Object selObj = m_treeListView2.SelectedObject;
+            if (selObj is IProcessEntity entity)
+            {
+                m_frmMain.myDocViewer1.UnloadMyDoc();
+                m_frmMain.toolStripStatusLabelPath.Text = entity.FolderPath;
+                m_frmMain.toolStripSplitButtonSettings.Visible = true;
+            }
+            else if (selObj is DocFile docFile)
+            {
+                m_frmMain.ClearStatusStrip2();
+                m_frmMain.myDocViewer1.LoadMyDoc(docFile.FilePath);
+            }
+            else
+            {
+                m_frmMain.myDocViewer1.UnloadMyDoc();
+                m_frmMain.ClearStatusStrip2();
+            }
+        }
     }
 }

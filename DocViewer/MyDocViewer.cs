@@ -30,10 +30,16 @@ namespace DocViewer
         }
         public void UnloadMyDoc()
         {
-            
-           if (documentViewer1.ActiveDocument!= null)
+            try
             {
-                documentViewer1.CloseDocument(); 
+                if (documentViewer1.ActiveDocument != null)
+                {
+                    documentViewer1.CloseDocument();
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
