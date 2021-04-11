@@ -207,7 +207,21 @@ namespace MyPMBOKExplorer
             p17.SetTools(new List<string>() { "Cost aggregation", "Reserve analysis", "Historical information review",
             "Funding limit reconciliation","Financing","Expert judgment"});
             processes.Add(p17);
-
+            //**************************************************************
+            Process p18 = new Process(project, "Plan Quality Management");
+            p18.SetProcessGroup("Planning");
+            p18.SetKnowledgeArea("Quality Management");
+            p18.SetInputs(new List<string>() { "Project charter", "Requirements management plan", "Risk management plan",
+            "Stakeholder engagement plan","Scope baseline","Assumption log","Requirements documentation",
+            "Requirements traceability matrix","Risk register","Stakeholder register",
+            "Enterprise environmental factors","Organizational process assets"});
+            p18.SetOutputsCreated(new List<string>() { "Quality management plan", "Quality metrics" });
+            p18.SetOutputsUpdated(new List<string>() { "Risk management plan", "Scope baseline", "Stakeholder register",
+            "Risk register","Requirements traceability matrix","Lessons learned register"});
+            p18.SetTools(new List<string>() { "Benchmarking", "Brainstorming", "Interviews", "Cost-benefit analysis",
+            "Cost of quality","Multicriteria decision analysis","Flowcharts","Logical data model","Matrix diagrams",
+            "Mind mapping","Test and inspection planning","Meetings","Expert judgment"});
+            processes.Add(p18);
 
 
 

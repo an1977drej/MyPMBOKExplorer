@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace MyPMBOKExplorer
             SetupGUI();
             ClearStatusStrip2();
             statusStrip2.Renderer = new CustomRendererForToolStrip();
-            
+
         }
 
         private void SetupGUI()
@@ -83,7 +84,7 @@ namespace MyPMBOKExplorer
         {
             foreach (var item in treeListView2.Objects)
             {
-                treeListView2.Expand(item); 
+                treeListView2.Expand(item);
             }
         }
         private void toolStrip2ButtonCollaps_Click(object sender, EventArgs e)
@@ -105,6 +106,28 @@ namespace MyPMBOKExplorer
         private void myDocViewer1_Resize(object sender, EventArgs e)
         {
             myDocViewer1.FitPage();
+        }
+
+        private void ToolStripMenuItemSetNewPath_Click(object sender, EventArgs e)
+        {
+            object selObj = treeListView2.SelectedObject;
+            if (selObj is IProcessEntity processEntity)
+            {
+                var dlg = new FolderPicker();
+                //dlg.InputPath = @"c:\windows\system32";
+                if (dlg.ShowDialog(this.Handle) == true)
+                {
+                    string folderPath = dlg.ResultPath;
+                    var projectProcessEntity = m_currentProject.ProcessEntities.FirstOrDefault(x => x.Name == processEntity.Name);
+                    if (projectProcessEntity != null)
+                    {
+                        projectProcessEntity.FolderPath = folderPath;
+                        processEntity.FolderPath = folderPath;
+                        toolStripStatusLabelPath.Text = folderPath;
+                        //MessageBox.Show( folderPath);
+                    }
+                }
+            }
         }
     }
 }

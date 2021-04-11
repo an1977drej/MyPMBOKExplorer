@@ -47,7 +47,7 @@ namespace MyPMBOKExplorer
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelPath = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButtonSettings = new System.Windows.Forms.ToolStripSplitButton();
-            this.setPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemSetNewPath = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStrip2ButtonExpand = new System.Windows.Forms.ToolStripButton();
             this.toolStrip2ButtonCollaps = new System.Windows.Forms.ToolStripButton();
@@ -239,7 +239,7 @@ namespace MyPMBOKExplorer
             // toolStripStatusLabelPath
             // 
             this.toolStripStatusLabelPath.Name = "toolStripStatusLabelPath";
-            this.toolStripStatusLabelPath.Size = new System.Drawing.Size(194, 20);
+            this.toolStripStatusLabelPath.Size = new System.Drawing.Size(155, 20);
             this.toolStripStatusLabelPath.Spring = true;
             this.toolStripStatusLabelPath.Text = ".";
             this.toolStripStatusLabelPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -248,18 +248,20 @@ namespace MyPMBOKExplorer
             // 
             this.toolStripSplitButtonSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripSplitButtonSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setPathToolStripMenuItem});
+            this.ToolStripMenuItemSetNewPath});
             this.toolStripSplitButtonSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButtonSettings.Image")));
             this.toolStripSplitButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButtonSettings.Name = "toolStripSplitButtonSettings";
             this.toolStripSplitButtonSettings.Size = new System.Drawing.Size(81, 24);
             this.toolStripSplitButtonSettings.Text = "Settings";
             // 
-            // setPathToolStripMenuItem
+            // ToolStripMenuItemSetNewPath
             // 
-            this.setPathToolStripMenuItem.Name = "setPathToolStripMenuItem";
-            this.setPathToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
-            this.setPathToolStripMenuItem.Text = "Set Path";
+            this.ToolStripMenuItemSetNewPath.Name = "ToolStripMenuItemSetNewPath";
+            this.ToolStripMenuItemSetNewPath.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItemSetNewPath.Text = "Set new path";
+            this.ToolStripMenuItemSetNewPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ToolStripMenuItemSetNewPath.Click += new System.EventHandler(this.ToolStripMenuItemSetNewPath_Click);
             // 
             // toolStrip2
             // 
@@ -364,7 +366,7 @@ namespace MyPMBOKExplorer
         private System.Windows.Forms.ToolStripButton toolStripButtonShowDocuments;
         private System.Windows.Forms.ToolStripButton toolStripButtonShowTools;
         public System.Windows.Forms.ToolStripSplitButton toolStripSplitButtonSettings;
-        private System.Windows.Forms.ToolStripMenuItem setPathToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSetNewPath;
         private System.Windows.Forms.ToolStripButton toolStrip2ButtonExpand;
         private System.Windows.Forms.ToolStripButton toolStrip2ButtonCollaps;
         private System.Windows.Forms.ToolStripButton toolStrip1ButtonOpenProject;

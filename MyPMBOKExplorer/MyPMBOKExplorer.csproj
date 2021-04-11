@@ -58,6 +58,7 @@
     <Compile Include="Creators\CreatorProject.cs" />
     <Compile Include="Creators\CreatorKnowledgeAreas.cs" />
     <Compile Include="Creators\CreatorProcessEntities.cs" />
+    <Compile Include="FolderPicker.cs" />
     <Compile Include="GUI\CustomRendererForToolStrip.cs" />
     <Compile Include="MyUtils.cs" />
     <Compile Include="ProcessEntities\DocFile.cs" />
