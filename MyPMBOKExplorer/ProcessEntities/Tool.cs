@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyPMBOKExplorer
 {
-    public class Tool : IProcessEntity
+    [Serializable]
+    public class Tool : ProcessEntity
     {
-        public string Name { get; set; }
-        public string FolderPath { get; set; }
-        public List<IDocFile> Documents { get; set; } = new List<IDocFile>();
+        public string  PathPicture { get; set; }
     }
 }

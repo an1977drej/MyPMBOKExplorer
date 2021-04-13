@@ -14,7 +14,7 @@ namespace MyPMBOKExplorer
         public CreatorProcessEntities(Project project)
         {
             m_project = project;
-            m_projectRootPath = m_project.RootPath;
+            m_projectRootPath = m_project.FolderPath;
         }
 
         private Dictionary<string, string> ListOfIOs()
@@ -259,9 +259,9 @@ namespace MyPMBOKExplorer
             return tools;
         }
 
-        public List<IProcessEntity> Create()
+        public List<ProcessEntity> Create()
         {
-            List<IProcessEntity> processEntities = new List<IProcessEntity>();
+            List<ProcessEntity> processEntities = new List<ProcessEntity>();
             string pathDocuments = Path.Combine(m_projectRootPath,"Project Documents");
             foreach (var item in ListOfIOs())
             {

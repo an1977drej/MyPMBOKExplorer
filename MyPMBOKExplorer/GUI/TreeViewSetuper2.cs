@@ -178,7 +178,7 @@ namespace MyPMBOKExplorer
         private void m_treeListView2_SelectionChanged(object sender, EventArgs e)
         {
             Object selObj = m_treeListView2.SelectedObject;
-            if (selObj is IProcessEntity entity)
+            if (selObj is ProcessEntity entity)
             {
                 m_frmMain.myDocViewer1.UnloadMyDoc();
                 m_frmMain.toolStripStatusLabelPath.Text = entity.FolderPath;

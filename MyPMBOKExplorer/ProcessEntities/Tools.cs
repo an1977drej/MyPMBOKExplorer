@@ -9,6 +9,6 @@ namespace MyPMBOKExplorer
   public  class Tools
     {
         public string Name { get; set; } = "Tools";
-        public List<IProcessEntity> Items { get; set; } = new List<IProcessEntity>();
+        public List<ProcessEntity> Items { get; set; } = new List<ProcessEntity>();
     }
 }

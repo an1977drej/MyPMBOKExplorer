@@ -61,6 +61,7 @@
     <Compile Include="FolderPicker.cs" />
     <Compile Include="GUI\CustomRendererForToolStrip.cs" />
     <Compile Include="MyUtils.cs" />
+    <Compile Include="MyXMLSerializer.cs" />
     <Compile Include="ProcessEntities\DocFile.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -70,7 +71,7 @@
     </Compile>
     <Compile Include="ProcessEntities\IDocFile.cs" />
     <Compile Include="ProcessEntities\Document.cs" />
-    <Compile Include="ProcessEntities\IProcessEntity.cs" />
+    <Compile Include="ProcessEntities\ProcessEntity.cs" />
     <Compile Include="ProcessEntities\Inputs.cs" />
     <Compile Include="ProcessEntities\Tool.cs" />
     <Compile Include="ProcessEntities\Tools.cs" />

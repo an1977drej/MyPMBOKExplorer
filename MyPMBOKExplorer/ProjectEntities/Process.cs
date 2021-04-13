@@ -3,20 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace MyPMBOKExplorer
 {
+    [Serializable]
     public class Process
     {
         Project m_project;
         public string Name { get; set; }
+        [XmlIgnore]
         public KnowledgeArea KnowledgeArea { get; private set; }
+        [XmlIgnore]
         public ProcessGroup ProcessGroup { get; private set; }
+        [XmlIgnore]
         public Inputs Inputs { get; set; } = new Inputs();
+        [XmlIgnore]
         public Outputs OutputsCreated { get; set; } = new Outputs();
+        [XmlIgnore]
         public Outputs OutputsUpdated { get; set; } = new Outputs();
+        [XmlIgnore]
         public Tools Tools { get; set; } = new Tools();
 
+        [XmlIgnore]
         public bool Initiating
         {
             get
@@ -31,6 +40,7 @@ namespace MyPMBOKExplorer
                 }
             }
         }
+        [XmlIgnore]
         public bool Planning
         {
             get
@@ -45,6 +55,7 @@ namespace MyPMBOKExplorer
                 }
             }
         }
+        [XmlIgnore]
         public bool Executing
         {
             get
@@ -59,6 +70,7 @@ namespace MyPMBOKExplorer
                 }
             }
         }
+        [XmlIgnore]
         public bool Monitoring
         {
             get
@@ -73,6 +85,7 @@ namespace MyPMBOKExplorer
                 }
             }
         }
+        [XmlIgnore]
         public bool Closing
         {
             get
@@ -92,7 +105,10 @@ namespace MyPMBOKExplorer
             Name = name;
             m_project = project;
         }
-        
+        public Process()
+        {
+
+        }
         public void SetProcessGroup(string processGroup)
         {
             ProcessGroup = m_project.ProcessGroups.FirstOrDefault(x => x.Name == processGroup);
@@ -118,7 +134,7 @@ namespace MyPMBOKExplorer
         {
             foreach (string item in ouputs)
             {
-                IProcessEntity selectedTool = m_project.ProcessEntities.FirstOrDefault(x => x.Name == item);
+                ProcessEntity selectedTool = m_project.ProcessEntities.FirstOrDefault(x => x.Name == item);
                 if (m_project.ProcessEntities.FirstOrDefault(x => x.Name == item) != null)
                 {
                     OutputsCreated.Items.Add(m_project.ProcessEntities.FirstOrDefault(x => x.Name == item));
@@ -129,7 +145,7 @@ namespace MyPMBOKExplorer
         {
             foreach (string item in ouputs)
             {
-                IProcessEntity selectedTool = m_project.ProcessEntities.FirstOrDefault(x => x.Name == item);
+                ProcessEntity selectedTool = m_project.ProcessEntities.FirstOrDefault(x => x.Name == item);
                 if (m_project.ProcessEntities.FirstOrDefault(x => x.Name == item) != null)
                 {
                     OutputsUpdated.Items.Add(m_project.ProcessEntities.FirstOrDefault(x => x.Name == item));
@@ -140,7 +156,7 @@ namespace MyPMBOKExplorer
         {
             foreach (string item in tools)
             {
-                IProcessEntity selectedTool = m_project.ProcessEntities.FirstOrDefault(x => x.Name == item);
+                ProcessEntity selectedTool = m_project.ProcessEntities.FirstOrDefault(x => x.Name == item);
                 if (m_project.ProcessEntities.FirstOrDefault(x => x.Name == item) != null)
                 {
                     Tools.Items.Add(m_project.ProcessEntities.FirstOrDefault(x => x.Name == item));

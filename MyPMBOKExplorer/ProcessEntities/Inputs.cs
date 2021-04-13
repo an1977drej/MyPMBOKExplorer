@@ -9,6 +9,6 @@ namespace MyPMBOKExplorer
   public  class Inputs
     {
         public string Name { get; set; } = "Inputs";
-        public List<IProcessEntity> Items { get; set; } = new List<IProcessEntity>();
+        public List<ProcessEntity> Items { get; set; } = new List<ProcessEntity>();
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyPMBOKExplorer
 {
+    [Serializable]
     public class ProcessGroup
     {
         public string Name { get; set; }
