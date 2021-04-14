@@ -222,18 +222,86 @@ namespace MyPMBOKExplorer
             "Cost of quality","Multicriteria decision analysis","Flowcharts","Logical data model","Matrix diagrams",
             "Mind mapping","Test and inspection planning","Meetings","Expert judgment"});
             processes.Add(p18);
+            //**************************************************************
+            Process p19 = new Process(project, "Plan Resource Management");
+            p19.SetProcessGroup("Planning");
+            p19.SetKnowledgeArea("Resource Management");
+            p19.SetInputs(new List<string>() { "Project charter", "Quality management plan", "Scope baseline",
+            "Project schedule","Requirements documentation","Stakeholder register","Risk register",
+            "Enterprise environmental factors","Organizational process assets"});
+            p19.SetOutputsCreated(new List<string>() { "Resource management plan", "Team charter" });
+            p19.SetOutputsUpdated(new List<string>() { "Risk register", "Assumption log" });
+            p19.SetTools(new List<string>() { "Hierarchical charts", "Responsibility assignment matrix", "Text-oriented formats",
+            "Organizational theory","Meetings","Expert judgment"});
+            processes.Add(p19);
+            //**************************************************************
+            Process p20 = new Process(project, "Plan Communications Management");
+            p20.SetProcessGroup("Planning");
+            p20.SetKnowledgeArea("Communications Management");
+            p20.SetInputs(new List<string>() { "Project charter", "Resource management plan", "Stakeholder engagement plan",
+            "Requirements documentation","Stakeholder register","Enterprise environmental factors","Organizational process assets"});
+            p20.SetOutputsCreated(new List<string>() { "Communications management plan" });
+            p20.SetOutputsUpdated(new List<string>() { "Stakeholder engagement plan", "Stakeholder register", "Project schedule" });
+            p20.SetTools(new List<string>() { "Communication methods", "Communication models", "Communication requirements analysis",
+            "Communication styles assessment","Communication technology","Cultural awareness","Political awareness",
+            "Stakeholder engagement assessment matrix","Meetings","Expert judgment"});
+            processes.Add(p20);
+            //**************************************************************
+            Process p21 = new Process(project, "Plan Stakeholder Engagement");
+            p21.SetProcessGroup("Planning");
+            p21.SetKnowledgeArea("Stakeholder Management");
+            p21.SetInputs(new List<string>() { "Project charter", "Resource management plan", "Communications management plan",
+            "Risk management plan","Stakeholder register","Risk register","Project schedule","Assumption log","Change log",
+            "Issue log","Agreements","Enterprise environmental factors","Organizational process assets"});
+            p21.SetOutputsCreated(new List<string>() { "Stakeholder engagement plan" });
+            //p21.SetOutputsUpdated(new List<string>() { "" });
+            p21.SetTools(new List<string>() { "Assumption and constraint analysis", "Benchmarking", "Mind mapping",
+            "Root cause analysis","Stakeholder engagement assessment matrix","Prioritization-ranking","Meetings","Expert judgment"});
+            processes.Add(p21);
+            //**************************************************************
+            Process p22 = new Process(project, "Plan Risk Management");
+            p22.SetProcessGroup("Planning");
+            p22.SetKnowledgeArea("Risk Management");
+            p22.SetInputs(new List<string>() { "Project charter", "Scope management plan", "Scope baseline",
+            "Requirements management plan","Schedule management plan","Schedule baseline","Cost management plan",
+            "Cost baseline","Performance measurement baseline","Quality management plan","Resource management plan",
+            "Communications management plan","Stakeholder engagement plan","Stakeholder register",
+            "Risk management plan","Procurement management plan","Change management plan","Configuration management plan",
+            "Project life cycle description","Development approach","Management reviews",
+            "Enterprise environmental factors","Organizational process assets"});
+            p22.SetOutputsCreated(new List<string>() { "Risk management plan" });
+            //p22.SetOutputsUpdated(new List<string>() { "" });
+            p22.SetTools(new List<string>() { "Stakeholder analysis", "Meetings", "Expert judgment" });
+            processes.Add(p22);
+            //**************************************************************
+            Process p23 = new Process(project, "Identify Risks");
+            p23.SetProcessGroup("Planning");
+            p23.SetKnowledgeArea("Risk Management");
+            p23.SetInputs(new List<string>() { "Requirements management plan", "Requirements documentation", "Schedule management plan",
+            "Cost management plan","Quality management plan","Resource management plan","Resource requirements",
+            "Risk management plan","Scope baseline","Schedule baseline","Cost baseline","Cost estimates",
+            "Activity duration estimates","Stakeholder register","Procurement management plan","Procurement strategy",
+            "Procurement statement of work","Bid documents","Assumption log","Issue log","Agreements",
+            "Lessons learned register","Enterprise environmental factors","Organizational process assets"});
+            p23.SetOutputsCreated(new List<string>() { "Risk register", "Risk report" });
+            p23.SetOutputsUpdated(new List<string>() { "Lessons learned register", "Issue log", "Assumption log" });
+            p23.SetTools(new List<string>() { "Brainstorming", "Checklists", "Interviews", "Root cause analysis",
+            "SWOT analysis","Document analysis","Assumption and constraint analysis","Facilitation",
+            "Prompt lists","Meetings","Expert judgment"});
+            processes.Add(p23);
+
 
 
 
             //**************************************************************
-            //Process p100 = new Process(project, "");
-            //p100.SetProcessGroup("");
-            //p100.SetKnowledgeArea("");
-            //p100.SetInputs(new List<string>() {"" });
-            //p100.SetOutputsCreated(new List<string>() {"" });
-            //p100.SetOutputsUpdated(new List<string>() {"" });
-            //p100.SetTools(new List<string>() {"" });
-            //processes.Add(p100);
+            //Process p20 = new Process(project, "");
+            //p20.SetProcessGroup("");
+            //p20.SetKnowledgeArea("");
+            //p20.SetInputs(new List<string>() {"" });
+            //p20.SetOutputsCreated(new List<string>() {"" });
+            //p20.SetOutputsUpdated(new List<string>() {"" });
+            //p20.SetTools(new List<string>() {"" });
+            //processes.Add(p20);
 
             #endregion
             //**************************************************************

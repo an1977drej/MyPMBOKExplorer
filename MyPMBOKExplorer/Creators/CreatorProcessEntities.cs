@@ -153,7 +153,7 @@ namespace MyPMBOKExplorer
             tools.Add("Decision tree analysis");
             tools.Add("Decomposition");
             tools.Add("Dependency determination");
-            tools.Add("Design for X (DfX)");
+            tools.Add("Design for X");
             tools.Add("Document analysis");
             tools.Add("Earned value analysis");
             tools.Add("Emotional intelligence");
@@ -190,7 +190,7 @@ namespace MyPMBOKExplorer
             tools.Add("Multicriteria decision analysis");
             tools.Add("Murder board");
             tools.Add("Negotiation");
-            tools.Add("Net present value (NPV)");
+            tools.Add("Net present value");
             tools.Add("Networking");
             tools.Add("Nominal group technique");
             tools.Add("Nonverbal communication");
@@ -203,9 +203,9 @@ namespace MyPMBOKExplorer
             tools.Add("Political awareness");
             tools.Add("Pre-assignment");
             tools.Add("Precedence diagramming method");
-            tools.Add("Present value (PV)");
+            tools.Add("Present value");
             tools.Add("Presentations");
-            tools.Add("Prioritization/ranking");
+            tools.Add("Prioritization-ranking");
             tools.Add("Probability and impact matrix");
             tools.Add("Problem solving");
             tools.Add("Process analysis");
@@ -222,12 +222,12 @@ namespace MyPMBOKExplorer
             tools.Add("Representations of uncertainty");
             tools.Add("Reserve analysis");
             tools.Add("Resource optimization");
-            tools.Add("Responsibility assignment matrix (RAM)");
+            tools.Add("Responsibility assignment matrix");
             tools.Add("Risk categorization");
             tools.Add("Risk data quality assessment");
             tools.Add("Risk probability and impact assessment");
             tools.Add("Rolling wave planning");
-            tools.Add("Root cause analysis (RCA)");
+            tools.Add("Root cause analysis");
             tools.Add("Scatter diagrams");
             tools.Add("Schedule compression");
             tools.Add("Schedule network analysis");
@@ -237,7 +237,7 @@ namespace MyPMBOKExplorer
             tools.Add("Source selection analysis");
             tools.Add("Stakeholder analysis");
             tools.Add("Stakeholder engagement assessment matrix");
-            tools.Add("Stakeholder mapping/representation");
+            tools.Add("Stakeholder mapping-representation");
             tools.Add("Statistical sampling");
             tools.Add("Strategies for opportunities");
             tools.Add("Strategies for overall project risk");
@@ -246,10 +246,10 @@ namespace MyPMBOKExplorer
             tools.Add("Team building");
             tools.Add("Technical performance analysis");
             tools.Add("Test and inspection planning");
-            tools.Add("Testing/product evaluations");
+            tools.Add("Testing-product evaluations");
             tools.Add("Text-oriented formats");
             tools.Add("Three-point estimating");
-            tools.Add("To-complete performance index (TCPI)");
+            tools.Add("To-complete performance index");
             tools.Add("Training");
             tools.Add("Trend analysis");
             tools.Add("Variance analysis");
