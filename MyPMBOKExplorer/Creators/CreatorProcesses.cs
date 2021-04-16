@@ -12,7 +12,7 @@ namespace MyPMBOKExplorer
         public static List<Process> Create(Project project)
         {
             List<Process> processes = new List<Process>();
-            //*************************************************************
+            //**************************************************************
             #region Initiating
             Process p1 = new Process(project, "Develop Project Charter");
             p1.SetProcessGroup("Initiating");
@@ -289,22 +289,169 @@ namespace MyPMBOKExplorer
             "SWOT analysis","Document analysis","Assumption and constraint analysis","Facilitation",
             "Prompt lists","Meetings","Expert judgment"});
             processes.Add(p23);
-
+            //**************************************************************
+            Process p24 = new Process(project, "Perform Qualitative Risk Analysis");
+            p24.SetProcessGroup("Planning");
+            p24.SetKnowledgeArea("Risk Management");
+            p24.SetInputs(new List<string>() { "Risk register", "Risk management plan", "Stakeholder register","Assumption log",
+            "Enterprise environmental factors","Organizational process assets"});
+            //p24.SetOutputsCreated(new List<string>() { "" });
+            p24.SetOutputsUpdated(new List<string>() { "Risk report", "Risk register", "Assumption log", "Issue log" });
+            p24.SetTools(new List<string>() { "Interviews", "Risk data quality assessment", "Risk probability and impact assessment",
+            "Assessment of other risk parameters","Probability and impact matrix","Hierarchical charts","Risk categorization",
+            "Facilitation","Meetings","Expert judgment"});
+            processes.Add(p24);
+            //**************************************************************
+            Process p25 = new Process(project, "Perform Quantitative Risk Analysis");
+            p25.SetProcessGroup("Planning");
+            p25.SetKnowledgeArea("Risk Management");
+            p25.SetInputs(new List<string>() { "Risk register", "Risk report", "Risk management plan", "Scope baseline",
+            "Schedule baseline","Activity duration estimates","Schedule forecasts","Cost baseline","Cost estimates",
+            "Cost forecasts","Basis of estimates","Assumption log","Milestone list","Resource requirements",
+            "Enterprise environmental factors","Organizational process assets"});
+            //p25.SetOutputsCreated(new List<string>() { "" });
+            p25.SetOutputsUpdated(new List<string>() { "Risk report" });
+            p25.SetTools(new List<string>() { "Interviews", "Facilitation", "Representations of uncertainty", "Simulation",
+            "Sensitivity analysis","Decision tree analysis","Influence diagrams","Expert judgment"});
+            processes.Add(p25);
+            //**************************************************************
+            Process p26 = new Process(project, "Plan Risk Responses");
+            p26.SetProcessGroup("Planning");
+            p26.SetKnowledgeArea("Risk Management");
+            p26.SetInputs(new List<string>() { "Risk management plan", "Resource management plan", "Risk report", "Risk register",
+            "Cost baseline","Stakeholder register","Project schedule","Resource calendars","Project team assignments",
+            "Lessons learned register","Enterprise environmental factors","Organizational process assets"});
+            p26.SetOutputsCreated(new List<string>() { "Change requests" });
+            p26.SetOutputsUpdated(new List<string>() { "Risk register", "Risk report", "Schedule management plan",
+            "Cost management plan","Quality management plan","Resource management plan","Procurement management plan",
+            "Scope baseline","Schedule baseline","Cost baseline","Assumption log","Cost forecasts","Lessons learned register",
+            "Project schedule","Project team assignments"});
+            p26.SetTools(new List<string>() { "Interviews", "Facilitation", "Strategies for threats", "Strategies for opportunities",
+            "Contingent response strategies","Strategies for overall project risk","Alternatives analysis",
+            "Cost-benefit analysis","Multicriteria decision analysis","Expert judgment"});
+            processes.Add(p26);
+            //**************************************************************
+            Process p27 = new Process(project, "Plan Procurement Management");
+            p27.SetProcessGroup("Planning");
+            p27.SetKnowledgeArea("Procurement Management");
+            p27.SetInputs(new List<string>() { "Project charter", "Business case", "Benefits management plan",
+            "Scope management plan","Quality management plan","Resource management plan","Scope baseline","Milestone list",
+            "Project team assignments","Requirements documentation","Requirements traceability matrix","Resource requirements",
+            "Stakeholder register","Risk register","Enterprise environmental factors","Organizational process assets"});
+            p27.SetOutputsCreated(new List<string>() { "Procurement management plan", "Procurement strategy", "Bid documents",
+            "Procurement statement of work","Source selection criteria","Make-or-buy decisions","Independent cost estimates"});
+            p27.SetOutputsUpdated(new List<string>() { "Stakeholder register", "Risk register", "Requirements documentation",
+            "Requirements traceability matrix","Milestone list","Lessons learned register","Organizational process assets"});
+            p27.SetTools(new List<string>() { "Market research", "Make-or-buy analysis", "Source selection analysis", "Meetings",
+            "Expert judgment"});
+            processes.Add(p27);
+            #endregion
+            //**************************************************************
+            #region Executing
+            Process p28 = new Process(project, "Direct and Manage Project Work");
+            p28.SetProcessGroup("Executing");
+            p28.SetKnowledgeArea("Integration Management");
+            p28.SetInputs(new List<string>() { "Scope management plan", "Requirements management plan", "Schedule management plan",
+            "Cost management plan","Quality management plan","Resource management plan","Communications management plan",
+            "Stakeholder engagement plan","Risk management plan","Procurement management plan","Change management plan",
+            "Configuration management plan","Scope baseline","Schedule baseline","Cost baseline","Performance measurement baseline",
+            "Project life cycle description","Development approach","Management reviews","Change log","Lessons learned register",
+            "Milestone list","Project communications","Project schedule","Requirements traceability matrix","Risk register",
+            "Risk report","Approved change requests","Enterprise environmental factors","Organizational process assets"});
+            p28.SetOutputsCreated(new List<string>() { "Work performance data", "Deliverables", "Issue log" });
+            p28.SetOutputsUpdated(new List<string>() { "Any project management plan component", "Scope management plan",
+            "Requirements management plan","Schedule management plan","Cost management plan","Quality management plan",
+            "Communications management plan","Resource management plan","Stakeholder engagement plan","Risk management plan",
+            "Procurement management plan","Scope baseline","Schedule baseline","Cost baseline","Performance measurement baseline",
+            "Change management plan","Configuration management plan","Project life cycle description","Development approach",
+            "Management reviews","Activity list","Assumption log","Lessons learned register","Requirements documentation",
+            "Risk register","Stakeholder register","Organizational process assets"});
+            p28.SetTools(new List<string>() { "Meetings", "Project management information system", "Expert judgment" });
+            processes.Add(p28);
+            //**************************************************************
+            Process p29 = new Process(project, "Manage Project Knowledge");
+            p29.SetProcessGroup("Executing");
+            p29.SetKnowledgeArea("Integration Management");
+            p29.SetInputs(new List<string>() { "Scope management plan", "Requirements management plan",
+            "Schedule management plan","Cost management plan","Quality management plan","Resource management plan",
+            "Communications management plan","Stakeholder engagement plan","Risk management plan","Procurement management plan",
+            "Change management plan","Configuration management plan","Scope baseline","Schedule baseline","Cost baseline",
+            "Performance measurement baseline","Project life cycle description","Development approach","Management reviews",
+            "Lessons learned register","Project team assignments","Resource breakdown structure","Source selection criteria",
+            "Stakeholder register","Deliverables","Enterprise environmental factors","Organizational process assets"});
+            p29.SetOutputsCreated(new List<string>() { "Lessons learned register" });
+            p29.SetOutputsUpdated(new List<string>() { "Scope management plan", "Requirements management plan",
+            "Schedule management plan","Cost management plan","Quality management plan","Communications management plan",
+            "Resource management plan","Stakeholder engagement plan","Risk management plan","Procurement management plan",
+            "Scope baseline","Schedule baseline","Cost baseline","Performance measurement baseline","Change management plan",
+            "Configuration management plan","Project life cycle description","Development approach","Management reviews"});
+            p29.SetTools(new List<string>() { "Knowledge management", "Information management", "Active listening",
+            "Expert judgment","Facilitation","Leadership","Networking","Political awareness"});
+            processes.Add(p29);
+            //**************************************************************
+            Process p30 = new Process(project, "Acquire Resources");
+            p30.SetProcessGroup("Executing");
+            p30.SetKnowledgeArea("Resource Management");
+            p30.SetInputs(new List<string>() { "Resource management plan", "Procurement management plan", "Cost baseline",
+            "Project schedule","Stakeholder register","Resource requirements","Resource calendars",
+            "Enterprise environmental factors","Organizational process assets"});
+            p30.SetOutputsCreated(new List<string>() { "Project team assignments", "Physical resource assignments",
+            "Resource calendars","Change requests"});
+            p30.SetOutputsUpdated(new List<string>() { "Stakeholder register", "Risk register", "Resource requirements",
+            "Resource breakdown structure","Project schedule","Lessons learned register","Cost baseline","Resource management plan"});
+            p30.SetTools(new List<string>() { "Multicriteria decision analysis", "Negotiation", "Pre-assignment", "Virtual teams" });
+            processes.Add(p30);
+            //**************************************************************
+            Process p31 = new Process(project, "Develop Team");
+            p31.SetProcessGroup("Executing");
+            p31.SetKnowledgeArea("Resource Management");
+            p31.SetInputs(new List<string>() { "Resource management plan", "Project team assignments", "Team charter",
+            "Resource calendars","Project schedule","Lessons learned register","Enterprise environmental factors",
+            "Organizational process assets"});
+            p31.SetOutputsCreated(new List<string>() { "Team performance assessments", "Change requests" });
+            p31.SetOutputsUpdated(new List<string>() { "Team charter", "Resource calendars", "Project team assignments",
+            "Project schedule","Lessons learned register","Resource management plan","Enterprise environmental factors",
+            "Organizational process assets"});
+            p31.SetTools(new List<string>() { "Colocation", "Virtual teams", "Communication technology",
+            "Conflict management","Influencing","Motivation","Negotiation","Team building","Recognition and rewards",
+            "Training","Individual and team assessments", "Meetings"});
+            processes.Add(p31);
+            //**************************************************************
+            Process p32 = new Process(project, "Manage Team");
+            p32.SetProcessGroup("Executing");
+            p32.SetKnowledgeArea("Resource Management");
+            p32.SetInputs(new List<string>() { "Resource management plan", "Team charter", "Project team assignments",
+            "Team performance assessments","Work performance reports","Lessons learned register","Issue log",
+            "Enterprise environmental factors","Organizational process assets"});
+            p32.SetOutputsCreated(new List<string>() { "Change requests" });
+            p32.SetOutputsUpdated(new List<string>() { "Project team assignments", "Resource management plan", "Issue log",
+            "Cost baseline","Schedule baseline","Lessons learned register","Enterprise environmental factors"});
+            p32.SetTools(new List<string>() { "Conflict management", "Decision making", "Emotional intelligence", "Influencing",
+            "Leadership","Project management information system"});
+            processes.Add(p32);
 
 
 
             //**************************************************************
-            //Process p20 = new Process(project, "");
-            //p20.SetProcessGroup("");
-            //p20.SetKnowledgeArea("");
-            //p20.SetInputs(new List<string>() {"" });
-            //p20.SetOutputsCreated(new List<string>() {"" });
-            //p20.SetOutputsUpdated(new List<string>() {"" });
-            //p20.SetTools(new List<string>() {"" });
-            //processes.Add(p20);
+            //Process p30 = new Process(project, "");
+            //p30.SetProcessGroup("");
+            //p30.SetKnowledgeArea("");
+            //p30.SetInputs(new List<string>() {"" });
+            //p30.SetOutputsCreated(new List<string>() {"" });
+            //p30.SetOutputsUpdated(new List<string>() {"" });
+            //p30.SetTools(new List<string>() {"" });
+            //processes.Add(p30);
 
             #endregion
             //**************************************************************
+            #region Monitoring and Controlling
+
+            #endregion
+
+            #region Closing
+
+            #endregion
+
             return processes;
         
         
