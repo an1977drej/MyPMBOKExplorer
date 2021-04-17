@@ -429,6 +429,75 @@ namespace MyPMBOKExplorer
             p32.SetTools(new List<string>() { "Conflict management", "Decision making", "Emotional intelligence", "Influencing",
             "Leadership","Project management information system"});
             processes.Add(p32);
+            //**************************************************************
+            Process p33 = new Process(project, "Manage Quality");
+            p33.SetProcessGroup("Executing");
+            p33.SetKnowledgeArea("Quality Management");
+            p33.SetInputs(new List<string>() { "Quality management plan", "Quality metrics", "Quality control measurements",
+            "Risk report","Lessons learned register","Organizational process assets"});
+            p33.SetOutputsCreated(new List<string>() { "Quality reports", "Test and evaluation documents", "Change requests" });
+            p33.SetOutputsUpdated(new List<string>() { "Risk register", "Lessons learned register", "Scope baseline", "Schedule baseline",
+            "Cost baseline","Quality management plan","Issue log"});
+            p33.SetTools(new List<string>() { "Checklists", "Alternatives analysis", "Document analysis", "Process analysis",
+            "Root cause analysis","Multicriteria decision analysis","Affinity diagrams","Cause-and-effect diagrams",
+            "Flowcharts","Histograms","Matrix diagrams","Scatter diagrams","Audits","Design for X","Problem solving",
+            "Quality improvement methods"});
+            processes.Add(p33);
+            //**************************************************************
+            Process p34 = new Process(project, "Implement Risk Responses");
+            p34.SetProcessGroup("Executing");
+            p34.SetKnowledgeArea("Risk Management");
+            p34.SetInputs(new List<string>() { "Risk management plan", "Risk report", "Risk register", "Lessons learned register",
+            "Organizational process assets"});
+            p34.SetOutputsCreated(new List<string>() { "Change requests" });
+            p34.SetOutputsUpdated(new List<string>() { "Risk report", "Risk register", "Project team assignments",
+            "Lessons learned register","Issue log"});
+            p34.SetTools(new List<string>() { "Influencing", "Project management information system", "Expert judgment" });
+            processes.Add(p34);
+            //**************************************************************
+            Process p35 = new Process(project, "Manage Communications");
+            p35.SetProcessGroup("Executing");
+            p35.SetKnowledgeArea("Communications Management");
+            p35.SetInputs(new List<string>() { "Communications management plan", "Resource management plan",
+            "Stakeholder engagement plan","Stakeholder register","Quality reports","Risk report","Work performance reports",
+            "Change log","Issue log","Lessons learned register","Enterprise environmental factors","Organizational process assets"});
+            p35.SetOutputsCreated(new List<string>() { "Project communications" });
+            p35.SetOutputsUpdated(new List<string>() { "Stakeholder register", "Risk register", "Project schedule", "Lessons learned register",
+            "Issue log","Stakeholder engagement plan","Communications management plan","Organizational process assets"});
+            p35.SetTools(new List<string>() { "Communication methods", "Communication technology", "Communication competence",
+            "Feedback","Nonverbal communication","Presentations","Project management information system","Project reporting",
+            "Active listening","Conflict management","Cultural awareness","Meeting management","Networking","Political awareness","Meetings"});
+            processes.Add(p35);
+            //**************************************************************
+            Process p36 = new Process(project, "Manage Stakeholder Engagement");
+            p36.SetProcessGroup("Executing");
+            p36.SetKnowledgeArea("Stakeholder Management");
+            p36.SetInputs(new List<string>() { "Communications management plan", "Stakeholder engagement plan", "Stakeholder register",
+            "Risk management plan","Change management plan","Issue log","Change log","Lessons learned register",
+            "Enterprise environmental factors","Organizational process assets"});
+            p36.SetOutputsCreated(new List<string>() { "Change requests" });
+            p36.SetOutputsUpdated(new List<string>() { "Stakeholder register", "Stakeholder engagement plan",
+            "Communications management plan","Lessons learned register","Issue log","Change log"});
+            p36.SetTools(new List<string>() { "Conflict management", "Cultural awareness", "Expert judgment",
+            "Feedback","Ground rules","Meetings","Negotiation","Observation-conversation","Political awareness"});
+            processes.Add(p36);
+            //**************************************************************
+            Process p37 = new Process(project, "Conduct Procurements");
+            p37.SetProcessGroup("Executing");
+            p37.SetKnowledgeArea("Procurement Management");
+            p37.SetInputs(new List<string>() { "Procurement management plan", "Scope management plan",
+            "Requirements management plan","Requirements documentation","Communications management plan",
+            "Stakeholder register","Risk management plan","Risk register","Configuration management plan","Cost baseline",
+            "Project schedule","Seller proposals","Procurement strategy","Procurement statement of work","Bid documents",
+            "Lessons learned register","Enterprise environmental factors","Organizational process assets"});
+            p37.SetOutputsCreated(new List<string>() { "Selected sellers", "Agreements" });
+            p37.SetOutputsUpdated(new List<string>() { "Stakeholder register", "Risk register", "Resource calendars",
+            "Requirements traceability matrix","Requirements documentation","Lessons learned register","Cost baseline",
+            "Schedule baseline","Scope baseline","Procurement management plan","Risk management plan","Communications management plan",
+            "Quality management plan","Requirements management plan","Organizational process assets"});
+            p37.SetTools(new List<string>() { "Advertising", "Bidder conferences", "Proposal evaluation", "Negotiation", "Expert judgment" });
+            processes.Add(p37);
+
 
 
 
