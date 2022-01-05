@@ -239,7 +239,7 @@ namespace MyPMBOKExplorer
             // toolStripStatusLabelPath
             // 
             this.toolStripStatusLabelPath.Name = "toolStripStatusLabelPath";
-            this.toolStripStatusLabelPath.Size = new System.Drawing.Size(155, 20);
+            this.toolStripStatusLabelPath.Size = new System.Drawing.Size(194, 20);
             this.toolStripStatusLabelPath.Spring = true;
             this.toolStripStatusLabelPath.Text = ".";
             this.toolStripStatusLabelPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -258,7 +258,7 @@ namespace MyPMBOKExplorer
             // ToolStripMenuItemSetNewPath
             // 
             this.ToolStripMenuItemSetNewPath.Name = "ToolStripMenuItemSetNewPath";
-            this.ToolStripMenuItemSetNewPath.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItemSetNewPath.Size = new System.Drawing.Size(178, 26);
             this.ToolStripMenuItemSetNewPath.Text = "Set new path";
             this.ToolStripMenuItemSetNewPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ToolStripMenuItemSetNewPath.Click += new System.EventHandler(this.ToolStripMenuItemSetNewPath_Click);
@@ -326,6 +326,7 @@ namespace MyPMBOKExplorer
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "My PMBOOK Explorer";
             ((System.ComponentModel.ISupportInitialize)(this.treeListView1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);

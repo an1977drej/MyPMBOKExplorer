@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BrightIdeasSoftware;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MyPMBOKExplorer
 {
@@ -25,6 +26,7 @@ namespace MyPMBOKExplorer
             m_frmMain = frmMain;
             m_treeListView1 = m_frmMain.treeListView1;
             m_treeListView2 = m_frmMain.treeListView2;
+            SetupView();
             CreateColumns();
             CanExpandGetter(m_treeListView1);
             ChildrenGetter(m_treeListView1);
@@ -32,7 +34,17 @@ namespace MyPMBOKExplorer
             SetupColumnsImage();
             m_treeListView1.SelectionChanged += new System.EventHandler(m_treeListView_SelectionChanged);
         }
-        
+
+        private void SetupView()
+        {
+            TreeListView.TreeRenderer treeColumnRenderer = m_treeListView1.TreeColumnRenderer;
+            //treeColumnRenderer.IsShowGlyphs = true;
+            //treeColumnRenderer.UseTriangles = true;
+            //*********************************************************************
+            m_treeListView1.UseTranslucentHotItem = true;
+            //*********************************************************************
+            m_treeListView1.FullRowSelect = true;
+        }
         public  void CreateColumns()
         {
             olvColumnName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -95,23 +107,22 @@ namespace MyPMBOKExplorer
                 {
                     return false;
                 }
-                //return x is StromKreis;
             };
         }
-
         private  void ChildrenGetter(BrightIdeasSoftware.TreeListView mytreeListView)
         {
             mytreeListView.ChildrenGetter = delegate (object x)
             {
                 try
                 {
-                    if (x is Project)
+                    if (x is Project project)
                     {
-                        return ((Project)x).KnowledgeAreas;
+                        return project.KnowledgeAreas;
                     }
                     if (x is KnowledgeArea)
                     {
                         return ((KnowledgeArea)x).Processes;
+                        //return ((KnowledgeArea)x).Processes.FindAll(p => p.Initiating == true);
                     }
                     else
                     {
@@ -129,7 +140,6 @@ namespace MyPMBOKExplorer
                 }
             };
         }
-
         private  void SetupColumnsText()
         {
             olvColumnInitiating.AspectGetter = delegate (object x)
@@ -140,7 +150,6 @@ namespace MyPMBOKExplorer
                     if (p.Initiating == true)
                     {
                         return "";
-                        //return Properties.Resources.ShaderSpot;
                     }
                     else
                     {
@@ -233,7 +242,6 @@ namespace MyPMBOKExplorer
                 }
             };
         }
-
         private  void SetupColumnsImage()
         {
             olvColumnInitiating.ImageGetter = delegate (object x)
@@ -337,7 +345,6 @@ namespace MyPMBOKExplorer
                 }
             };
         }
-
         private void m_treeListView_SelectionChanged(object sender, EventArgs e)
         {
             m_frmMain.myDocViewer1.UnloadMyDoc();
