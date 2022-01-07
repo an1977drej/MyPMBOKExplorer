@@ -11,16 +11,16 @@ namespace MyPMBOKExplorer
     public class TreeViewSetuper1
     {
         private frmMain m_frmMain;
-        private  BrightIdeasSoftware.TreeListView m_treeListView1;
+        private BrightIdeasSoftware.TreeListView m_treeListView1;
         private BrightIdeasSoftware.TreeListView m_treeListView2;
-        private  string m_platzhalter = "";
-        private  BrightIdeasSoftware.OLVColumn olvColumnName;
-        private  BrightIdeasSoftware.OLVColumn olvColumnInitiating;
-        private  BrightIdeasSoftware.OLVColumn olvColumnPlanning;
-        private  BrightIdeasSoftware.OLVColumn olvColumnExecuting;
-        private  BrightIdeasSoftware.OLVColumn olvColumnMonitoring;
-        private  BrightIdeasSoftware.OLVColumn olvColumnClosing;
-
+        private string m_platzhalter = "";
+        private BrightIdeasSoftware.OLVColumn olvColumnName;
+        private BrightIdeasSoftware.OLVColumn olvColumnInitiating;
+        private BrightIdeasSoftware.OLVColumn olvColumnPlanning;
+        private BrightIdeasSoftware.OLVColumn olvColumnExecuting;
+        private BrightIdeasSoftware.OLVColumn olvColumnMonitoring;
+        private BrightIdeasSoftware.OLVColumn olvColumnClosing;
+        private static bool m_FilterInitiating = false;
         public TreeViewSetuper1(frmMain frmMain)
         {
             m_frmMain = frmMain;
@@ -28,10 +28,11 @@ namespace MyPMBOKExplorer
             m_treeListView2 = m_frmMain.treeListView2;
             SetupView();
             CreateColumns();
-            CanExpandGetter(m_treeListView1);
-            ChildrenGetter(m_treeListView1);
+            CanExpandGetter();
+            ChildrenGetter();
             SetupColumnsText();
             SetupColumnsImage();
+            Sorter();
             m_treeListView1.SelectionChanged += new System.EventHandler(m_treeListView_SelectionChanged);
         }
 
@@ -45,7 +46,7 @@ namespace MyPMBOKExplorer
             //*********************************************************************
             m_treeListView1.FullRowSelect = true;
         }
-        public  void CreateColumns()
+        public void CreateColumns()
         {
             olvColumnName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             olvColumnName.AspectName = "Name";
@@ -95,9 +96,9 @@ namespace MyPMBOKExplorer
 
         }
 
-        private  void CanExpandGetter(BrightIdeasSoftware.TreeListView mytreeListView)
+        private void CanExpandGetter()
         {
-            mytreeListView.CanExpandGetter = delegate (object x)
+            m_treeListView1.CanExpandGetter = delegate (object x)
             {
                 if (x is Project || x is KnowledgeArea)
                 {
@@ -109,9 +110,83 @@ namespace MyPMBOKExplorer
                 }
             };
         }
-        private  void ChildrenGetter(BrightIdeasSoftware.TreeListView mytreeListView)
+
+        TreeListView.ChildrenGetterDelegate DelegateUnSortName = (object x) =>
         {
-            mytreeListView.ChildrenGetter = delegate (object x)
+            try
+            {
+                if (x is Project project)
+                {
+                    return project.KnowledgeAreas;
+                }
+                if (x is KnowledgeArea)
+                {
+
+                    return ((KnowledgeArea)x).Processes;
+                }
+                else
+                {
+                    return new ArrayList();
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                //this.BeginInvoke((MethodInvoker)delegate ()
+                //{
+                //m_treeListView1.Collapse(x);
+                //    MessageBox.Show(this, ex.Message, "ObjectListViewDemo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //});
+                return new ArrayList();
+            }
+        };
+        TreeListView.ChildrenGetterDelegate DelegateSortInitiating = (object x) =>
+        {
+            try
+            {
+                if (x is Project project)
+                {
+                    return project.KnowledgeAreas.Where(m => m.Processes.Any(u => u.Initiating == true)).ToList();
+                }
+                if (x is KnowledgeArea)
+                {
+                    return ((KnowledgeArea)x).Processes.FindAll(p => p.Initiating == true);
+                }
+                else
+                {
+                    return new ArrayList();
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return new ArrayList();
+            }
+        };
+        TreeListView.ChildrenGetterDelegate DelegateSortPlanning = (object x) =>
+        {
+            try
+            {
+                if (x is Project project)
+                {
+                    return project.KnowledgeAreas.Where(m => m.Processes.Any(u => u.Planning == true)).ToList();
+                }
+                if (x is KnowledgeArea)
+                {
+                    return ((KnowledgeArea)x).Processes.FindAll(p => p.Planning == true);
+                }
+                else
+                {
+                    return new ArrayList();
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return new ArrayList();
+            }
+        };
+
+        private void ChildrenGetter()
+        {
+            m_treeListView1.ChildrenGetter = delegate (object x)
             {
                 try
                 {
@@ -121,7 +196,15 @@ namespace MyPMBOKExplorer
                     }
                     if (x is KnowledgeArea)
                     {
-                        return ((KnowledgeArea)x).Processes;
+                        if (m_FilterInitiating == true)
+                        {
+                            return ((KnowledgeArea)x).Processes.FindAll(p => p.Initiating == true);
+                        }
+                        else
+                        {
+                            return ((KnowledgeArea)x).Processes;
+                        }
+                        //return ((KnowledgeArea)x).Processes;
                         //return ((KnowledgeArea)x).Processes.FindAll(p => p.Initiating == true);
                     }
                     else
@@ -133,14 +216,14 @@ namespace MyPMBOKExplorer
                 {
                     //this.BeginInvoke((MethodInvoker)delegate ()
                     //{
-                    mytreeListView.Collapse(x);
+                    m_treeListView1.Collapse(x);
                     //    MessageBox.Show(this, ex.Message, "ObjectListViewDemo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     //});
                     return new ArrayList();
                 }
             };
         }
-        private  void SetupColumnsText()
+        private void SetupColumnsText()
         {
             olvColumnInitiating.AspectGetter = delegate (object x)
             {
@@ -242,7 +325,7 @@ namespace MyPMBOKExplorer
                 }
             };
         }
-        private  void SetupColumnsImage()
+        private void SetupColumnsImage()
         {
             olvColumnInitiating.ImageGetter = delegate (object x)
             {
@@ -358,11 +441,11 @@ namespace MyPMBOKExplorer
                 m_treeListView2.AddObject(process.Inputs);
                 m_treeListView2.AddObject(process.OutputsCreated);
                 //m_treeListView2.AddObject(process.OutputsUpdated);
-                if (process.OutputsUpdated.Items.Count>0)
+                if (process.OutputsUpdated.Items.Count > 0)
                 {
                     process.OutputsCreated.Name = "Outputs Created";
                     process.OutputsUpdated.Name = "Outputs Updated";
-                    m_treeListView2.AddObject(process.OutputsUpdated); 
+                    m_treeListView2.AddObject(process.OutputsUpdated);
                 }
                 m_treeListView2.AddObject(process.Tools);
                 m_treeListView2.ExpandAll();
@@ -376,7 +459,36 @@ namespace MyPMBOKExplorer
 
         }
 
-        
+        private void Sorter()
+        {
+            m_treeListView1.CustomSorter = delegate (OLVColumn column, SortOrder order)
+            {
+                if (column.AspectName == "Initiating" && order == SortOrder.Ascending)
+                {
+                    m_treeListView1.ChildrenGetter = DelegateSortInitiating;
+                    m_treeListView1.RebuildAll(false);
+                    Sorter();
+                    m_treeListView1.ExpandAll();
+                    return;
+                }
+                if (column.AspectName == "Planning" && order == SortOrder.Ascending)
+                {
+                    m_treeListView1.ChildrenGetter = DelegateSortPlanning;
+                    m_treeListView1.RebuildAll(false);
+                    Sorter();
+                    m_treeListView1.ExpandAll();
+                    return;
+                }
+
+
+                m_treeListView1.ChildrenGetter = DelegateUnSortName;
+                m_treeListView1.RebuildAll(false);
+                Sorter();
+                m_treeListView1.ExpandAll();
+
+
+            };
+        }
 
 
     }
