@@ -16,7 +16,34 @@ namespace MyPMBOKExplorer
             m_project = project;
             m_projectRootPath = m_project.FolderPath;
         }
-
+        public List<ProcessEntity> Create()
+        {
+            List<ProcessEntity> processEntities = new List<ProcessEntity>();
+            string pathDocuments = Path.Combine(m_projectRootPath,"Project Documents");
+            foreach (var item in ListOfIOs())
+            {
+                string pathDoc = Path.Combine(pathDocuments, item.Key);
+                if (!Directory.Exists(pathDoc))
+                {
+                    Directory.CreateDirectory(pathDoc);
+                }
+                Document doc = new Document() { Name = item.Key, FolderPath = pathDoc, PartOf = item.Value };
+                processEntities.Add(doc);
+            }
+            //********************************************************************
+            string pathTools = Path.Combine(m_projectRootPath, "Project Tools");
+            foreach (var item in ListOfTools())
+            {
+                string pathTool = Path.Combine(pathTools, item);
+                if (!Directory.Exists(pathTool))
+                {
+                    Directory.CreateDirectory(pathTool);
+                }
+                Tool tool = new Tool() { Name = item, FolderPath= pathTool };
+                processEntities.Add(tool);
+            }
+            return processEntities;
+        }
         private Dictionary<string, string> ListOfIOs()
         {
             Dictionary<string, string> list = new Dictionary<string, string>();
@@ -109,7 +136,6 @@ namespace MyPMBOKExplorer
             list.Add("Work performance reports", "Work performance flow");
             return list;
         }
-
         private List<string> ListOfTools()
         {
             List<string> tools = new List<string>();
@@ -257,35 +283,6 @@ namespace MyPMBOKExplorer
             tools.Add("Voting");
             tools.Add("What-if scenario analysis");
             return tools;
-        }
-
-        public List<ProcessEntity> Create()
-        {
-            List<ProcessEntity> processEntities = new List<ProcessEntity>();
-            string pathDocuments = Path.Combine(m_projectRootPath,"Project Documents");
-            foreach (var item in ListOfIOs())
-            {
-                string pathDoc = Path.Combine(pathDocuments, item.Key);
-                if (!Directory.Exists(pathDoc))
-                {
-                    Directory.CreateDirectory(pathDoc);
-                }
-                Document doc = new Document() { Name = item.Key, FolderPath = pathDoc, PartOf = item.Value };
-                processEntities.Add(doc);
-            }
-            //********************************************************************
-            string pathTools = Path.Combine(m_projectRootPath, "Project Tools");
-            foreach (var item in ListOfTools())
-            {
-                string pathTool = Path.Combine(pathTools, item);
-                if (!Directory.Exists(pathTool))
-                {
-                    Directory.CreateDirectory(pathTool);
-                }
-                Tool tool = new Tool() { Name = item, FolderPath= pathTool };
-                processEntities.Add(tool);
-            }
-            return processEntities;
         }
 
     }

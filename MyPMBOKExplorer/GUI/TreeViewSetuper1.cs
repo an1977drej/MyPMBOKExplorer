@@ -11,15 +11,15 @@ namespace MyPMBOKExplorer
     public class TreeViewSetuper1
     {
         private frmMain m_frmMain;
-        private BrightIdeasSoftware.TreeListView m_treeListView1;
-        private BrightIdeasSoftware.TreeListView m_treeListView2;
+        private TreeListView m_treeListView1;
+        private TreeListView m_treeListView2;
         private string m_platzhalter = "";
-        private BrightIdeasSoftware.OLVColumn olvColumnName;
-        private BrightIdeasSoftware.OLVColumn olvColumnInitiating;
-        private BrightIdeasSoftware.OLVColumn olvColumnPlanning;
-        private BrightIdeasSoftware.OLVColumn olvColumnExecuting;
-        private BrightIdeasSoftware.OLVColumn olvColumnMonitoring;
-        private BrightIdeasSoftware.OLVColumn olvColumnClosing;
+        private OLVColumn olvColumnName;
+        private OLVColumn olvColumnInitiating;
+        private OLVColumn olvColumnPlanning;
+        private OLVColumn olvColumnExecuting;
+        private OLVColumn olvColumnMonitoring;
+        private OLVColumn olvColumnClosing;
         private static bool m_FilterInitiating = false;
         public TreeViewSetuper1(frmMain frmMain)
         {
@@ -29,10 +29,10 @@ namespace MyPMBOKExplorer
             SetupView();
             CreateColumns();
             CanExpandGetter();
-            ChildrenGetter();
             SetupColumnsText();
             SetupColumnsImage();
-            Sorter();
+            m_treeListView1.ChildrenGetter = DelegateSortDefault;
+            ColumnSorter();
             m_treeListView1.SelectionChanged += new System.EventHandler(m_treeListView_SelectionChanged);
         }
 
@@ -95,7 +95,6 @@ namespace MyPMBOKExplorer
 
 
         }
-
         private void CanExpandGetter()
         {
             m_treeListView1.CanExpandGetter = delegate (object x)
@@ -110,80 +109,6 @@ namespace MyPMBOKExplorer
                 }
             };
         }
-
-        TreeListView.ChildrenGetterDelegate DelegateUnSortName = (object x) =>
-        {
-            try
-            {
-                if (x is Project project)
-                {
-                    return project.KnowledgeAreas;
-                }
-                if (x is KnowledgeArea)
-                {
-
-                    return ((KnowledgeArea)x).Processes;
-                }
-                else
-                {
-                    return new ArrayList();
-                }
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                //this.BeginInvoke((MethodInvoker)delegate ()
-                //{
-                //m_treeListView1.Collapse(x);
-                //    MessageBox.Show(this, ex.Message, "ObjectListViewDemo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //});
-                return new ArrayList();
-            }
-        };
-        TreeListView.ChildrenGetterDelegate DelegateSortInitiating = (object x) =>
-        {
-            try
-            {
-                if (x is Project project)
-                {
-                    return project.KnowledgeAreas.Where(m => m.Processes.Any(u => u.Initiating == true)).ToList();
-                }
-                if (x is KnowledgeArea)
-                {
-                    return ((KnowledgeArea)x).Processes.FindAll(p => p.Initiating == true);
-                }
-                else
-                {
-                    return new ArrayList();
-                }
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return new ArrayList();
-            }
-        };
-        TreeListView.ChildrenGetterDelegate DelegateSortPlanning = (object x) =>
-        {
-            try
-            {
-                if (x is Project project)
-                {
-                    return project.KnowledgeAreas.Where(m => m.Processes.Any(u => u.Planning == true)).ToList();
-                }
-                if (x is KnowledgeArea)
-                {
-                    return ((KnowledgeArea)x).Processes.FindAll(p => p.Planning == true);
-                }
-                else
-                {
-                    return new ArrayList();
-                }
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return new ArrayList();
-            }
-        };
-
         private void ChildrenGetter()
         {
             m_treeListView1.ChildrenGetter = delegate (object x)
@@ -458,38 +383,185 @@ namespace MyPMBOKExplorer
             }
 
         }
-
-        private void Sorter()
+        private void ColumnSorter()
         {
             m_treeListView1.CustomSorter = delegate (OLVColumn column, SortOrder order)
             {
-                if (column.AspectName == "Initiating" && order == SortOrder.Ascending)
+                if (order == SortOrder.Ascending)
                 {
-                    m_treeListView1.ChildrenGetter = DelegateSortInitiating;
-                    m_treeListView1.RebuildAll(false);
-                    Sorter();
-                    m_treeListView1.ExpandAll();
+                    UpdateChildrenGetter(column.AspectName);
+                    ColumnSorter();
                     return;
                 }
-                if (column.AspectName == "Planning" && order == SortOrder.Ascending)
-                {
-                    m_treeListView1.ChildrenGetter = DelegateSortPlanning;
-                    m_treeListView1.RebuildAll(false);
-                    Sorter();
-                    m_treeListView1.ExpandAll();
-                    return;
-                }
-
-
-                m_treeListView1.ChildrenGetter = DelegateUnSortName;
-                m_treeListView1.RebuildAll(false);
-                Sorter();
-                m_treeListView1.ExpandAll();
-
-
+                UpdateChildrenGetter("Default");
+                ColumnSorter();
             };
         }
+        private void UpdateChildrenGetter(string columnName)
+        {
+            TreeListView.ChildrenGetterDelegate DelegateSort;
+            switch (columnName)
+            {
+                case "Initiating":
+                    DelegateSort = DelegateSortInitiating;
+                    break;
+                case "Planning":
+                    DelegateSort = DelegateSortPlanning;
+                    break;
+                case "Executing":
+                    DelegateSort = DelegateSortExecuting;
+                    break;
+                case "Monitoring":
+                    DelegateSort = DelegateSortMonitoring;
+                    break;
+                case "Closing":
+                    DelegateSort = DelegateSortClosing;
+                    break;
+                default:
+                    DelegateSort = DelegateSortDefault;
+                    break;
+            }
+            m_treeListView1.ChildrenGetter = DelegateSort;
+            m_treeListView1.RebuildAll(false);
+            m_treeListView1.ExpandAll();
+        }
+        TreeListView.ChildrenGetterDelegate DelegateSortDefault = (object x) =>
+        {
+            try
+            {
+                if (x is Project project)
+                {
+                    return project.KnowledgeAreas;
+                }
+                if (x is KnowledgeArea)
+                {
 
-
+                    return ((KnowledgeArea)x).Processes;
+                }
+                else
+                {
+                    return new ArrayList();
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                //this.BeginInvoke((MethodInvoker)delegate ()
+                //{
+                //m_treeListView1.Collapse(x);
+                //    MessageBox.Show(this, ex.Message, "ObjectListViewDemo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //});
+                return new ArrayList();
+            }
+        };
+        TreeListView.ChildrenGetterDelegate DelegateSortInitiating = (object x) =>
+        {
+            try
+            {
+                if (x is Project project)
+                {
+                    return project.KnowledgeAreas.Where(m => m.Processes.Any(u => u.Initiating == true)).ToList();
+                }
+                if (x is KnowledgeArea)
+                {
+                    return ((KnowledgeArea)x).Processes.FindAll(p => p.Initiating == true);
+                }
+                else
+                {
+                    return new ArrayList();
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return new ArrayList();
+            }
+        };
+        TreeListView.ChildrenGetterDelegate DelegateSortPlanning = (object x) =>
+        {
+            try
+            {
+                if (x is Project project)
+                {
+                    return project.KnowledgeAreas.Where(m => m.Processes.Any(u => u.Planning == true)).ToList();
+                }
+                if (x is KnowledgeArea)
+                {
+                    return ((KnowledgeArea)x).Processes.FindAll(p => p.Planning == true);
+                }
+                else
+                {
+                    return new ArrayList();
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return new ArrayList();
+            }
+        };
+        TreeListView.ChildrenGetterDelegate DelegateSortExecuting = (object x) =>
+        {
+            try
+            {
+                if (x is Project project)
+                {
+                    return project.KnowledgeAreas.Where(m => m.Processes.Any(u => u.Executing == true)).ToList();
+                }
+                if (x is KnowledgeArea)
+                {
+                    return ((KnowledgeArea)x).Processes.FindAll(p => p.Executing == true);
+                }
+                else
+                {
+                    return new ArrayList();
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return new ArrayList();
+            }
+        };
+        TreeListView.ChildrenGetterDelegate DelegateSortMonitoring = (object x) =>
+        {
+            try
+            {
+                if (x is Project project)
+                {
+                    return project.KnowledgeAreas.Where(m => m.Processes.Any(u => u.Monitoring == true)).ToList();
+                }
+                if (x is KnowledgeArea)
+                {
+                    return ((KnowledgeArea)x).Processes.FindAll(p => p.Monitoring == true);
+                }
+                else
+                {
+                    return new ArrayList();
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return new ArrayList();
+            }
+        };
+        TreeListView.ChildrenGetterDelegate DelegateSortClosing = (object x) =>
+        {
+            try
+            {
+                if (x is Project project)
+                {
+                    return project.KnowledgeAreas.Where(m => m.Processes.Any(u => u.Closing == true)).ToList();
+                }
+                if (x is KnowledgeArea)
+                {
+                    return ((KnowledgeArea)x).Processes.FindAll(p => p.Closing == true);
+                }
+                else
+                {
+                    return new ArrayList();
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return new ArrayList();
+            }
+        };
     }
 }
