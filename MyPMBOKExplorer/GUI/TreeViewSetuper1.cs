@@ -39,8 +39,8 @@ namespace MyPMBOKExplorer
         private void SetupView()
         {
             TreeListView.TreeRenderer treeColumnRenderer = m_treeListView1.TreeColumnRenderer;
-            //treeColumnRenderer.IsShowGlyphs = true;
-            //treeColumnRenderer.UseTriangles = true;
+            treeColumnRenderer.IsShowGlyphs = true;
+            treeColumnRenderer.UseTriangles = true;
             //*********************************************************************
             m_treeListView1.UseTranslucentHotItem = true;
             //*********************************************************************

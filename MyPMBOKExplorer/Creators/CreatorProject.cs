@@ -19,7 +19,6 @@ namespace MyPMBOKExplorer
             newProject.FilePath = filePath;
             newProject.ProcessGroups.AddRange(CreatorProcessGroups.Create());
             newProject.KnowledgeAreas.AddRange(CreatorKnowledgeAreas.Create());
-            
             newProject.ProcessEntities.AddRange(new CreatorProcessEntities(newProject).Create());
             newProject.Processes.AddRange(CreatorProcesses.Create(newProject));
             return newProject;

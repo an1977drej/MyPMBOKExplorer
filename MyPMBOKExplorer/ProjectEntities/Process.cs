@@ -109,18 +109,18 @@ namespace MyPMBOKExplorer
         {
 
         }
-        public void SetProcessGroup(string processGroup)
+        public void AssignToProcessGroup(string processGroup)
         {
             ProcessGroup = m_project.ProcessGroups.FirstOrDefault(x => x.Name == processGroup);
             ProcessGroup.Processes.Add(this);
             
         }
-        public void SetKnowledgeArea(string knowledgeArea)
+        public void AssignToKnowledgeArea(string knowledgeArea)
         {
             KnowledgeArea = m_project.KnowledgeAreas.FirstOrDefault(x => x.Name == knowledgeArea);
             KnowledgeArea.Processes.Add(this);
         }
-        public void SetInputs(List<string> inputs)
+        public void AssignToInputs(List<string> inputs)
         {
             foreach (string item in inputs)
             {
@@ -130,7 +130,7 @@ namespace MyPMBOKExplorer
                 }
             }
         }
-        public void SetOutputsCreated(List<string> ouputs)
+        public void AssignToOutputsCreated(List<string> ouputs)
         {
             foreach (string item in ouputs)
             {
@@ -141,7 +141,7 @@ namespace MyPMBOKExplorer
                 }
             }
         }
-        public void SetOutputsUpdated(List<string> ouputs)
+        public void AssignToOutputsUpdated(List<string> ouputs)
         {
             foreach (string item in ouputs)
             {
@@ -152,7 +152,7 @@ namespace MyPMBOKExplorer
                 }
             }
         }
-        public void SetTools(List<string> tools)
+        public void AssignToTools(List<string> tools)
         {
             foreach (string item in tools)
             {

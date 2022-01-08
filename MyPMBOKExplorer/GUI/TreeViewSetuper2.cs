@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BrightIdeasSoftware;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -21,6 +22,7 @@ namespace MyPMBOKExplorer
         {
             m_frmMain = frmMain;
             m_treeListView2 = m_frmMain.treeListView2;
+            SetupView();
             CreateColumns();
             CanExpandGetter(m_treeListView2);
             ChildrenGetter(m_treeListView2);
@@ -28,7 +30,16 @@ namespace MyPMBOKExplorer
             SetupColumnsImage();
             m_treeListView2.SelectionChanged += m_treeListView2_SelectionChanged;
         }
-        
+        private void SetupView()
+        {
+            TreeListView.TreeRenderer treeColumnRenderer = m_treeListView2.TreeColumnRenderer;
+            treeColumnRenderer.IsShowGlyphs = true;
+            treeColumnRenderer.UseTriangles = true;
+            //*********************************************************************
+            m_treeListView2.UseTranslucentHotItem = true;
+            //*********************************************************************
+            m_treeListView2.FullRowSelect = true;
+        }
         public void CreateColumns()
         {
             m_olvColumnName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));

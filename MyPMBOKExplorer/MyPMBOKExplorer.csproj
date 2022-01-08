@@ -38,7 +38,7 @@
   <ItemGroup>
     <Reference Include="ObjectListView, Version=2.5.1.28942, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ObjectListView.dll</HintPath>
+      <HintPath>DLLs\ObjectListView.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
